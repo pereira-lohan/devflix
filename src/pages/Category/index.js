@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom';
 import PageDefault from '../../components/PageDefault';
 import FormField from '../../components/FormField';
 import Button from '../../components/Button';
+import useForm from '../../hooks/useForm';
 // import { Link } from 'react-router-dom';
 
-const Video = () => {
+const Category = () => {
   const [categories, setCategories] = useState([]);
 
   const initialValue = {
@@ -14,38 +15,28 @@ const Video = () => {
     color: '#000000',
   };
 
-  const [category, setCategory] = useState(initialValue);
-
-  const setValue = (key, value) => {
-    setCategory({
-      ...category,
-      [key]: value,
-    });
-  };
+  const { values, handleChange, clearForm } = useForm(initialValue);
 
   const handleSubmitCategory = (event) => {
     event.preventDefault();
-    setCategories([...categories, category]);
-    setCategory(initialValue);
-  };
+    setCategories([...categories, values]);
 
-  const handleChange = ({ target }) => {
-    setValue(target.getAttribute('name'), target.value);
+    clearForm(initialValue);
   };
 
   useEffect(() => {
-    if (window.location.href.includes('localhost')) {
-      const URL = 'http://localhost:8080/categories';
-      fetch(URL)
-        .then(async (response) => {
-          if (response.ok) {
-            const parsedResponse = await response.json();
-            setCategories([...parsedResponse]);
-            return;
-          }
-          throw new Error('Não foi possível pegar os dados');
-        });
-    }
+    const URL = window.location.hostname.includes('localhost')
+      ? 'http://localhost:8080/categories'
+      : 'https://devlohanflix.herokuapp.com/categories';
+    fetch(URL)
+      .then(async (response) => {
+        if (response.ok) {
+          const parsedResponse = await response.json();
+          setCategories([...parsedResponse]);
+          return;
+        }
+        throw new Error('Não foi possível pegar os dados');
+      });
   }, []);
 
   return (
@@ -55,10 +46,10 @@ const Video = () => {
       <form onSubmit={handleSubmitCategory}>
 
         <FormField
-          label="Nome da Categoria"
+          label="Título da Categoria"
           type="text"
           name="name"
-          value={category.title}
+          value={values.title}
           onChange={handleChange}
         />
 
@@ -66,7 +57,7 @@ const Video = () => {
           label="Descrição"
           type="textarea"
           name="description"
-          value={category.description}
+          value={values.description}
           onChange={handleChange}
         />
 
@@ -74,7 +65,7 @@ const Video = () => {
           label="Cor"
           type="color"
           name="color"
-          value={category.color}
+          value={values.color}
           onChange={handleChange}
         />
 
@@ -98,4 +89,4 @@ const Video = () => {
   );
 };
 
-export default Video;
+export default Category;
