@@ -6,7 +6,7 @@
  
  [![Linkedin Badge](https://img.shields.io/badge/-Mario_Souto-blue?logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/omariosouto/)](https://www.linkedin.com/in/omariosouto/) [![Linkedin Badge](https://img.shields.io/badge/-Juliana_Negreiros-blue?logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/juliananegreiros/)](https://www.linkedin.com/in/juliananegreiros/) [![Linkedin Badge](https://img.shields.io/badge/-Marco_Bruno-blue?logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/marcobrunobr/)](https://www.linkedin.com/in/marcobrunobr/)
 
-A Ideia é que o projeto seja a sua "flix" pessoal, onde você cadastra seus vídeos preferidos e categorizar seus vídeos.
+A Ideia é que o projeto seja a sua "flix" pessoal, onde você cadastra seus vídeos preferidos e categoriza seus vídeos.
 
 
 #### O que ainda falta no projeto para finalizar 🤔
